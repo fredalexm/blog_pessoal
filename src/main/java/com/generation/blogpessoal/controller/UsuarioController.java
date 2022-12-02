@@ -2,6 +2,7 @@ package com.generation.blogpessoal.controller;
 
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
+import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +20,16 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @GetMapping("/all")
+    public ResponseEntity <List<Usuario>> getAll(){
+
+        return ResponseEntity.ok(usuarioRepository.findAll());
+
+    }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario){
