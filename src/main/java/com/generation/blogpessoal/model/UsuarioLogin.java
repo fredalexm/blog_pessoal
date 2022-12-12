@@ -9,6 +9,11 @@ public class UsuarioLogin {
     private String foto;
     private String token;
 
+    public UsuarioLogin(String nome, String usuario) {
+        this.nome = nome;
+        this.usuario = usuario;
+    }
+
     public Long getId() {
         return id;
     }
